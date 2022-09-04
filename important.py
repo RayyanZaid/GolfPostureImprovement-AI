@@ -274,6 +274,7 @@ def kmeans(link1, link2):
     print(student_cluster)
     num = 0
     cluster_nums = [0,1,2,3]    
+    count = 0
     for label in (student_cluster):
 
         # getting the specific image we want to compare
@@ -298,33 +299,40 @@ def kmeans(link1, link2):
         # added
 
         isInClusterNums = False
-        os.chdir(r'C:\Users\rayya\OneDrive\Desktop\finafina\coach')
-        for file in os.listdir(r'C:\Users\rayya\OneDrive\Desktop\finafina\coach'):
+
+        if count!=0:
+            os.chdir('../')
+        
+        directory_list = os.listdir('coach')
+        
+        for file in directory_list:
             # print(file) coach4.jpg
             img_path = f'coach{nearest}.jpg' #coach14.jpg
-            for cluster_index in cluster_nums:              #0
-                if(file == img_path and cluster_index == predict):
-                    isInClusterNums = True
-                    shutil.copy2(file,r'C:\Users\rayya\OneDrive\Desktop\finafina\images\vid1')
-                    cluster_nums.remove(cluster_index)
-        img1 = Image.open(f'coach{nearest}.jpg')
+                          #0
+            if(file == img_path):
+                    
+                os.chdir('coach')
+                print('File name :    ', os.path.basename(__file__))
+                print('Directory Name:     ', os.path.dirname(__file__))
+                shutil.copy2(file,'../images/vid1')
+                
 
-        os.chdir(r'C:\Users\rayya\OneDrive\Desktop\finafina\student')
-        for file in os.listdir(r'C:\Users\rayya\OneDrive\Desktop\finafina\student'):
+        
+        os.chdir('../')
+        directory_list = os.listdir('student')
+        
+        for file in directory_list:
             img_path = f'student{index_student}.jpg'
-            if(file == img_path and isInClusterNums):
-                shutil.copy2(file,r'C:\Users\rayya\OneDrive\Desktop\finafina\images\vid2')
-        img2 = Image.open(f'student{index_student}.jpg')
-        
-        
-        if isInClusterNums:
-            os.chdir(r'C:\Users\rayya\OneDrive\Desktop\finafina\images\highlighted_differences')
-            diff = ImageChops.difference(img1,img2)
-            diff = diff.save(f'highlight{num}.jpg')
-            num+=1
-
+            if(file == img_path):
+                os.chdir('student')
+                shutil.copy2(file,'../images/vid2')
+                
             
-        os.chdir(r'C:\Users\rayya\OneDrive\Desktop\finafina')
+ 
+        
+        
+        # os.chdir('../coach')
+        count+=1
 
         print('')
         print('')

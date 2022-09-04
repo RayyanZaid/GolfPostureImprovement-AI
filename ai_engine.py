@@ -15,26 +15,25 @@ def send_images_example(v1, v2):
     #get the list of file store in the vid1 and vid2 directories
 
     
-    vid1= os.listdir(r'C:\Users\rayya\OneDrive\Desktop\finafina\images\vid1')
-    vid2 = os.listdir(r'C:\Users\rayya\OneDrive\Desktop\finafina\images\vid2')
-    vid3 = os.listdir(r'C:\Users\rayya\OneDrive\Desktop\finafina\images\highlighted_differences')
+    os.chdir('../')
+    vid1= os.listdir('images/vid1')
+    vid2 = os.listdir('images/vid2')
 
 
 
-    # Get list of all files in a given directory sorted by name
-    dir1_name = r'C:\Users\rayya\OneDrive\Desktop\finafina\images\vid1\*.jpg'
-    list_of_files1 = filter(os.path.isfile, glob.glob(dir1_name + '*'))
-    list_of_files1 = sorted(list_of_files1, key = os.path.getmtime)
+
+    # # Get list of all files in a given directory sorted by name
+    # dir1_name = 'images/vid1'
+    # list_of_files1 = filter(os.path.isfile, glob.glob(dir1_name + '*'))
+    # list_of_files1 = sorted(list_of_files1, key = os.path.getmtime)
     
-    dir2_name = r'C:\Users\rayya\OneDrive\Desktop\finafina\images\vid2\*.jpg'
-    # Get list of all files in a given directory sorted by name
-    list_of_files2 = filter(os.path.isfile, glob.glob(dir2_name + '*'))
-    list_of_files2 = sorted(list_of_files2, key = os.path.getmtime)
+    # dir2_name = 'images/vid2'
+    # # Get list of all files in a given directory sorted by name
+    # list_of_files2 = filter(os.path.isfile, glob.glob(dir2_name + '*'))
+    # list_of_files2 = sorted(list_of_files2, key = os.path.getmtime)
 
 
-    dir3_name = r'C:\Users\rayya\OneDrive\Desktop\finafina\images\highlighted_differences\*.jpg'
-    list_of_files3 = filter(os.path.isfile, glob.glob(dir3_name + '*'))
-    list_of_files3 = sorted(list_of_files3, key = os.path.getmtime)
+    
 
 
     counter1 = 1
@@ -48,13 +47,16 @@ def send_images_example(v1, v2):
         # list_of_files1
         # list_of_files2
     
-    for (file_path1, file_path2, file_path3) in zip(list_of_files1, list_of_files2, list_of_files3):
-        public_url1 = sm.upload_file(file_name = f'tennis/{counter1}' , local_path= file_path1)
-        public_url2 = sm.upload_file(file_name = f'tennis/{counter2}' , local_path= file_path2)
+    for (file_path1, file_path2) in zip(vid1,vid2):
+        os.chdir('images/vid1')
+        public_url1 = sm.upload_file(file_name = f'tennis/{file_path1}' , local_path= file_path1)
+        os.chdir('../vid2')
+        public_url2 = sm.upload_file(file_name = f'tennis/{file_path2}' , local_path= file_path2)
         # public_url3 = sm.upload_file(file_name = f'tennis/{counter3}' , local_path= file_path3)
         counter1+=1
         counter2+=1
-        counter3+=1
+        os.chdir('../')
+        os.chdir('../')
         public_urls.append((public_url1,public_url2))
     
     shutil.rmtree('coach')

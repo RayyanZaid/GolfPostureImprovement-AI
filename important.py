@@ -4,11 +4,11 @@ from tkinter import Image
 import cv2
 import mediapipe as mp
 import numpy as np
-from IPython.core.display import display
+
 from flask import Flask
 import sys
 import os
-import matplotlib.pyplot as plt
+
 from PIL import Image, ImageChops
 
 from sklearn.model_selection import ParameterGrid
@@ -16,6 +16,7 @@ from sklearn.cluster import KMeans
 
 from sklearn.cluster import KMeans
 import shutil
+
 
 def set_up_pose_detection_model():
     mp_drawing = mp.solutions.drawing_utils
@@ -293,8 +294,8 @@ def kmeans(link1, link2):
 
         print('Coach ' , nearest)
 
-        display('Student', f'student/student{index_student}.jpg')
-        display('Coach', f'coach/coach{nearest}.jpg')
+        # display('Student', f'student/student{index_student}.jpg')
+        # display('Coach', f'coach/coach{nearest}.jpg')
 
         # added
 

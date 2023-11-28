@@ -1,4 +1,4 @@
-from storage_manager import StorageManager
+# from storage_manager import StorageManager
 import os
 import important
 import glob
@@ -6,7 +6,7 @@ import shutil
 from pathlib import Path
 
 
-sm = StorageManager()
+# sm = StorageManager()
 
 def send_images_example(v1, v2):
     important.kmeans(v1,v2) 
@@ -49,15 +49,15 @@ def send_images_example(v1, v2):
     
     for (file_path1, file_path2) in zip(vid1,vid2):
         os.chdir('images/vid1')
-        public_url1 = sm.upload_file(file_name = f'tennis/{file_path1}' , local_path= file_path1)
+        # public_url1 = sm.upload_file(file_name = f'tennis/{file_path1}' , local_path= file_path1)
         os.chdir('../vid2')
-        public_url2 = sm.upload_file(file_name = f'tennis/{file_path2}' , local_path= file_path2)
+        # public_url2 = sm.upload_file(file_name = f'tennis/{file_path2}' , local_path= file_path2)
         # public_url3 = sm.upload_file(file_name = f'tennis/{counter3}' , local_path= file_path3)
         counter1+=1
         counter2+=1
         os.chdir('../')
         os.chdir('../')
-        public_urls.append((public_url1,public_url2))
+        # public_urls.append((public_url1,public_url2))
     
     shutil.rmtree('coach')
     shutil.rmtree('student')
@@ -103,3 +103,6 @@ def send_images_example(v1, v2):
             
     return public_urls
 
+
+if __name__ == "__main__":
+    send_images_example("./coach.mp4" , "./student.mp4")
